@@ -1,4 +1,4 @@
-SELECT id as user_id,
+SELECT id,
     concat(first_name, ' ', last_name) as username,
     email,
     age,
