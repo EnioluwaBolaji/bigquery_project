@@ -56,5 +56,5 @@ from {{ ref("stgdistribution") }} d
  join {{ ref("stgusers") }} u on oi.user_id = u.id
  join {{ ref("stgorders") }} o on u.id = o.user_id
  join {{ ref("stgevents") }} e on o.order_id = e.id
-  
+
 
