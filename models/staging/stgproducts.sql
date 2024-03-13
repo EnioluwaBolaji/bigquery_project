@@ -1,1 +1,1 @@
-SELECT * FROM `bigquery-public-data.thelook_ecommerce.products` where id is not null
+SELECT * FROM `bigquery-public-data.thelook_ecommerce.products` where id is not null 
