@@ -5,7 +5,7 @@ models:
     description: no null user_id
     columns: 
       - name: user_id
-           description:the primary key for bigtable
+        description: the primary key for bigtable
         tests:
           - not_null
 
@@ -13,7 +13,7 @@ models:
     description: unique id per row
     columns: 
       - name: id
-          description:the primary key for inventory table
+        description: the primary key for inventory table
         tests:
           - unique
           - not_null
