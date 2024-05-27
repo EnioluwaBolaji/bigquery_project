@@ -38,6 +38,6 @@ models:
   staging:
       +materialized: table
   prod:
-      +materialized: table 
+      +materialized: incremental 
   
  
