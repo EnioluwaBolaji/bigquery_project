@@ -1,0 +1,317 @@
+version: 2
+
+models:
+  - name: stgdistribution
+    description: "Distribution centers information"
+    columns:
+      - name: id
+        description: "Unique identifier for each distribution center"
+        tests:
+          - unique
+          - not_null
+      - name: name
+        description: "Name of the distribution center"
+      - name: latitude
+        description: "Latitude coordinate of the distribution center"
+      - name: longitude
+        description: "Longitude coordinate of the distribution center"
+
+  - name: stgevents
+    description: "Event records"
+    columns:
+      - name: id
+        description: "Unique identifier for each event"
+        tests:
+          - unique
+          - not_null
+      - name: user_id
+        description: "Identifier for the user associated with the event"
+      - name: sequence_number
+        description: "Sequence number of the event"
+      - name: session_id
+        description: "Identifier for the session during which the event occurred"
+      - name: created_at
+        description: "Timestamp indicating when the event took place"
+      - name: ip_address
+        description: "IP address from which the event originated"
+      - name: city
+        description: "City where the event occurred"
+      - name: state
+        description: "State where the event occurred"
+      - name: postal_code
+        description: "Postal code of the event location"
+      - name: browser
+        description: "Web browser used during the event"
+      - name: traffic_source
+        description: "Source of the traffic leading to the event"
+      - name: uri
+        description: "Uniform Resource Identifier associated with the event"
+      - name: event_type
+        description: "Type of event recorded"
+
+  - name: stginventory
+    description: "Inventory items information"
+    columns:
+      - name: id
+        description: "Unique identifier for each inventory item"
+        tests:
+          - unique
+          - not_null
+      - name: product_id
+        description: "Identifier for the associated product"
+      - name: created_at
+        description: "Timestamp indicating when the inventory item was created"
+      - name: sold_at
+        description: "Timestamp indicating when the item was sold"
+      - name: cost
+        description: "Cost of the inventory item"
+      - name: product_category
+        description: "Category of the associated product"
+      - name: product_name
+        description: "Name of the associated product"
+      - name: product_brand
+        description: "Brand of the associated product"
+      - name: product_retail_price
+        description: "Retail price of the associated product"
+      - name: product_department
+        description: "Department to which the product belongs"
+      - name: product_sku
+        description: "Stock Keeping Unit (SKU) of the product"
+      - name: product_distribution_center_id
+        description: "Identifier for the distribution center associated with the product"
+
+  - name: stgorderitems
+    description: "Order items information"
+    columns:
+      - name: id
+        description: "Unique identifier for each order item"
+        tests:
+          - unique
+          - not_null
+      - name: order_id
+        description: "Identifier for the associated order"
+      - name: user_id
+        description: "Identifier for the user who placed the order"
+      - name: product_id
+        description: "Identifier for the associated product"
+      - name: inventory_item_id
+        description: "Identifier for the associated inventory item"
+      - name: status
+        description: "Status of the order item"
+      - name: created_at
+        description: "Timestamp indicating when the order item was created"
+      - name: shipped_at
+        description: "Timestamp indicating when the order item was shipped"
+      - name: delivered_at
+        description: "Timestamp indicating when the order item was delivered"
+      - name: returned_at
+        description: "Timestamp indicating when the order item was returned"
+
+  - name: stgorders
+    description: "Orders information"
+    columns:
+      - name: order_id
+        description: "Unique identifier for each order"
+        tests:
+          - unique
+          - not_null
+      - name: user_id
+        description: "Identifier for the user who placed the order"
+      - name: status
+        description: "Status of the order"
+      - name: gender
+        description: "Gender information of the user"
+      - name: created_at
+        description: "Timestamp indicating when the order was created"
+      - name: returned_at
+        description: "Timestamp indicating when the order was returned"
+      - name: shipped_at
+        description: "Timestamp indicating when the order was shipped"
+      - name: delivered_at
+        description: "Timestamp indicating when the order was delivered"
+      - name: num_of_item
+        description: "Number of items in the order"
+
+  - name: stgproducts
+    description: "Products information"
+    columns:
+      - name: id
+        description: "Unique identifier for each product"
+        tests:
+          - unique
+          - not_null
+      - name: cost
+        description: "Cost of the product"
+      - name: category
+        description: "Category to which the product belongs"
+      - name: name
+        description: "Name of the product"
+      - name: brand
+        description: "Brand of the product"
+      - name: retail_price
+        description: "Retail price of the product"
+      - name: department
+        description: "Department to which the product belongs"
+      - name: sku
+        description: "Stock Keeping Unit (SKU) of the product"
+      - name: distribution_center_id
+        description: "Identifier for the distribution center associated with the product"
+
+  - name: stgusers
+    description: "Users information"
+    columns:
+      - name: id
+        description: "Unique identifier for each user"
+        tests:
+          - unique
+          - not_null
+      - name: first_name
+        description: "First name of the user"
+      - name: last_name
+        description: "Last name of the user"
+      - name: email
+        description: "Email address of the user"
+      - name: age
+        description: "Age of the user"
+      - name: gender
+        description: "Gender of the user"
+      - name: state
+        description: "State where the user is located"
+      - name: street_address
+        description: "Street address of the user"
+      - name: postal_code
+        description: "Postal code of the user"
+      - name: city
+        description: "City where the user is located"
+      - name: country
+        description: "Country where the user is located"
+      - name: latitude
+        description: "Latitude coordinate of the user"
+      - name: longitude
+        description: "Longitude coordinate of the user"
+      - name: traffic_source
+        description: "Source of the traffic leading to the user"
+      - name: created_at
+        description: "Timestamp indicating when the user account was created"
+
+  - name: bigtable
+    description: no null user_id
+    columns: 
+      - name: user_id
+        description: the primary key for bigtable
+        tests:
+          - not_null
+
+  - name: inventory
+    description: unique id per row
+    columns: 
+      - name: id
+        description: the primary key for inventory table
+        tests:
+          - unique
+          - not_null
+
+  - name: stgdistribution
+    description: the distributioncenters of the stgDistributionCenters and location
+    columns:
+      - name: id
+        description: the primary key for the stgDistributionCenters
+        tests:
+          - unique
+          - not_null
+
+  - name: stgproducts
+    columns:
+      - name: id
+        description: the primary key for the stgProducts
+        tests:
+          - unique
+          - not_null
+
+  - name: stgevents
+    columns:
+      - name: id
+        description: the primary key for the stgEvents
+        tests:
+          - unique
+          - not_null
+      - name: event_type
+        description: '{{ doc("event_type") }}'
+        tests:
+          - accepted_values:
+              values:
+                - cancel
+                - cart
+                - department
+                - home
+                - product
+                - purchase
+
+  - name: stginventory
+    columns:
+      - name: id
+        description: the primary key for the stgInventoryItems
+        tests:
+          - unique
+          - not_null
+      - name: product_department
+        tests:
+          - accepted_values:
+              values:
+                - Men
+                - Women
+
+  - name: stgorderitems
+    description: the number of unique ordereditems per users
+    columns:
+      - name: id
+        description: the primary key for the stgOrderItems
+        tests:
+          - unique
+          - not_null
+
+  - name: stgorders
+    description: one order per users
+    columns:
+      - name: order_id
+        description: the primary key for the stgOrders table and foreign key for the stgOrderItems
+        tests:
+          - relationships:
+              field: order_id
+              to: ref('stgOrderItems')
+      - name: status
+        description: '{{ doc("order_status") }}'
+        tests:
+          - accepted_values:
+              values:
+                - Cancelled
+                - Complete
+                - Processing
+                - Returned
+                - Shipped           
+  - name: stgusers
+    description: one unique user per row 
+    columns:
+      - name: id
+        description: the primary key for the stgUsers 
+        tests:
+          - unique
+          - not_null
+      - name: traffic_source
+        tests:
+          - accepted_values:
+              values:
+                - Display
+                - Email
+                - Facebook
+                - Organic
+                - Search    
+
+
+
+
+
+
+
+
+
