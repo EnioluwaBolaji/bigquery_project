@@ -1,7 +1,6 @@
 version: 2
-
 models:
-  - name: stgdistribution
+  - name: distribution_centers
     description: "Distribution centers information"
     columns:
       - name: id
@@ -16,7 +15,7 @@ models:
       - name: longitude
         description: "Longitude coordinate of the distribution center"
 
-  - name: stgevents
+  - name: events
     description: "Event records"
     columns:
       - name: id
@@ -49,7 +48,7 @@ models:
       - name: event_type
         description: "Type of event recorded"
 
-  - name: stginventory
+  - name: inventory_items
     description: "Inventory items information"
     columns:
       - name: id
@@ -80,7 +79,7 @@ models:
       - name: product_distribution_center_id
         description: "Identifier for the distribution center associated with the product"
 
-  - name: stgorderitems
+  - name: order_items
     description: "Order items information"
     columns:
       - name: id
@@ -107,7 +106,7 @@ models:
       - name: returned_at
         description: "Timestamp indicating when the order item was returned"
 
-  - name: stgorders
+  - name: orders
     description: "Orders information"
     columns:
       - name: order_id
@@ -132,7 +131,7 @@ models:
       - name: num_of_item
         description: "Number of items in the order"
 
-  - name: stgproducts
+  - name: products
     description: "Products information"
     columns:
       - name: id
@@ -157,7 +156,7 @@ models:
       - name: distribution_center_id
         description: "Identifier for the distribution center associated with the product"
 
-  - name: stgusers
+  - name: users
     description: "Users information"
     columns:
       - name: id
@@ -193,125 +192,3 @@ models:
         description: "Source of the traffic leading to the user"
       - name: created_at
         description: "Timestamp indicating when the user account was created"
-
-  - name: bigtable
-    description: no null user_id
-    columns: 
-      - name: user_id
-        description: the primary key for bigtable
-        tests:
-          - not_null
-
-  - name: inventory
-    description: unique id per row
-    columns: 
-      - name: id
-        description: the primary key for inventory table
-        tests:
-          - unique
-          - not_null
-
-  - name: stgdistribution
-    description: the distributioncenters of the stgDistributionCenters and location
-    columns:
-      - name: id
-        description: the primary key for the stgDistributionCenters
-        tests:
-          - unique
-          - not_null
-
-  - name: stgproducts
-    columns:
-      - name: id
-        description: the primary key for the stgProducts
-        tests:
-          - unique
-          - not_null
-
-  - name: stgevents
-    columns:
-      - name: id
-        description: the primary key for the stgEvents
-        tests:
-          - unique
-          - not_null
-      - name: event_type
-        description: '{{ doc("event_type") }}'
-        tests:
-          - accepted_values:
-              values:
-                - cancel
-                - cart
-                - department
-                - home
-                - product
-                - purchase
-
-  - name: stginventory
-    columns:
-      - name: id
-        description: the primary key for the stgInventoryItems
-        tests:
-          - unique
-          - not_null
-      - name: product_department
-        tests:
-          - accepted_values:
-              values:
-                - Men
-                - Women
-
-  - name: stgorderitems
-    description: the number of unique ordereditems per users
-    columns:
-      - name: id
-        description: the primary key for the stgOrderItems
-        tests:
-          - unique
-          - not_null
-
-  - name: stgorders
-    description: one order per users
-    columns:
-      - name: order_id
-        description: the primary key for the stgOrders table and foreign key for the stgOrderItems
-        tests:
-          - relationships:
-              field: order_id
-              to: ref('stgOrderItems')
-      - name: status
-        description: '{{ doc("order_status") }}'
-        tests:
-          - accepted_values:
-              values:
-                - Cancelled
-                - Complete
-                - Processing
-                - Returned
-                - Shipped           
-  - name: stgusers
-    description: one unique user per row 
-    columns:
-      - name: id
-        description: the primary key for the stgUsers 
-        tests:
-          - unique
-          - not_null
-      - name: traffic_source
-        tests:
-          - accepted_values:
-              values:
-                - Display
-                - Email
-                - Facebook
-                - Organic
-                - Search    
-
-
-
-
-
-
-
-
-
