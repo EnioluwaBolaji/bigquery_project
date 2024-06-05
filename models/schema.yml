@@ -1,6 +1,6 @@
 version: 2
 models:
-  - name: distribution_centers
+  - name: stgdistribution
     description: "Distribution centers information"
     columns:
       - name: id
@@ -15,7 +15,7 @@ models:
       - name: longitude
         description: "Longitude coordinate of the distribution center"
 
-  - name: events
+  - name: stgevents
     description: "Event records"
     columns:
       - name: id
@@ -48,7 +48,7 @@ models:
       - name: event_type
         description: "Type of event recorded"
 
-  - name: inventory_items
+  - name: stginventory
     description: "Inventory items information"
     columns:
       - name: id
@@ -79,7 +79,7 @@ models:
       - name: product_distribution_center_id
         description: "Identifier for the distribution center associated with the product"
 
-  - name: order_items
+  - name: stgorderitems
     description: "Order items information"
     columns:
       - name: id
@@ -106,7 +106,7 @@ models:
       - name: returned_at
         description: "Timestamp indicating when the order item was returned"
 
-  - name: orders
+  - name: stgorders
     description: "Orders information"
     columns:
       - name: order_id
@@ -131,7 +131,7 @@ models:
       - name: num_of_item
         description: "Number of items in the order"
 
-  - name: products
+  - name: stgproducts
     description: "Products information"
     columns:
       - name: id
@@ -156,7 +156,7 @@ models:
       - name: distribution_center_id
         description: "Identifier for the distribution center associated with the product"
 
-  - name: users
+  - name: stgusers
     description: "Users information"
     columns:
       - name: id
